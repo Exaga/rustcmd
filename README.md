@@ -12,6 +12,8 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 
 `rustcmd` was designed to be Linux-agnostic and operate on any Linux distribution capable of hosting a Rust server. 
 
+`rustcmd` is released under the [MIT License](LICENSE).
+
 ## What does `rustcmd` do?
 
 `rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, with no Python runtime or third-party WebSocket library required. `rustcmd` is self-contained and self-sufficient. It's very quick in operation offering instant returns on command responses and returned output. 
