@@ -21,6 +21,18 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 - `rustcmd` also provides four local service-management commands for starting, stopping, restarting, and checking the status of the Rust server service. 
 - `rustcmd` can also be used for automating Rust server commands and tasks via `cron`.
 
+######################
+
+## Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Local service management](#local-service-management)
+- [Command reference](#command-reference)
+
+######################
+
 ## Download the source
 
 Clone the repository and enter the new directory:
