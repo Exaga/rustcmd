@@ -25,6 +25,8 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 
 ## Contents
 
+- [Download the source](#download-the-source)
+- [Build rustcmd](#build-rustcmd)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
