@@ -361,7 +361,7 @@ The development history and version changes are recorded in `CHANGELOG.md`.
 
 ## License
 
-`rustcmd` is released under the MIT License. The complete license text is included in the source and can also be displayed with:
+`rustcmd` is released under the [MIT License](LICENSE). The complete license text is included in the source and can also be displayed with:
 
 ```bash
 rustcmd --license
