@@ -30,6 +30,7 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
+- [Verbose errors](#verbose-errors)
 - [Local service management](#local-service-management)
 - [Command reference](#command-reference)
 
