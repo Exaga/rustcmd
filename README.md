@@ -17,6 +17,7 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 `rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, with no Python runtime or third-party WebSocket library required. `rustcmd` is self-contained and self-sufficient. It's very quick in operation offering instant returns on command responses and returned output. 
 
 - `rustcmd` also provides four local service-management commands for starting, stopping, restarting, and checking the status of the Rust server service. 
+
 -`rustcmd` can also be used for automating Rust server commands and tasks via `cron`.
 
 ## Download the source
