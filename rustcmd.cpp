@@ -89,6 +89,7 @@
 
 namespace fs = std::filesystem;
 
+// Runtime configuration
 struct RconConfig {
     std::string ip;
     std::string port;
@@ -96,6 +97,7 @@ struct RconConfig {
     std::string service_unit;
 };
 
+// Error details for verbose output
 class DiagnosticError : public std::runtime_error {
 public:
     DiagnosticError(const std::string& message, const std::string& detail)
@@ -124,6 +126,7 @@ static std::string trim(const std::string& value)
     return value.substr(first, last - first + 1);
 }
 
+// Configuration file lookup
 static fs::path user_config_path()
 {
     if (const char* xdg = std::getenv("XDG_CONFIG_HOME"); xdg && *xdg) {
@@ -219,6 +222,7 @@ static RconConfig read_config(const fs::path& path)
     return config;
 }
 
+// Program information and help output
 static constexpr const char* VERSION = "1.3.8";
 static constexpr const char* PROJECT_URL = "https://github.com/Exaga/rustcmd";
 
@@ -285,6 +289,7 @@ static void print_help()
         << "  <command> --verbose     Show detailed errors for the command\n\n";
 }
 
+// WebRCON JSON command payload
 static std::string json_escape(const std::string& value)
 {
     static constexpr char hex[] = "0123456789abcdef";
@@ -321,6 +326,7 @@ static std::string build_web_rcon_payload(const std::string& command)
 }
 
 
+// SHA-1 hashing for the WebSocket handshake
 static std::uint32_t rotate_left(std::uint32_t value, unsigned int bits)
 {
     return (value << bits) | (value >> (32U - bits));
@@ -414,6 +420,7 @@ static std::uint32_t rotate_left(std::uint32_t value, unsigned int bits)
     return digest;
 }
 
+// Base64 encoding for the WebSocket handshake
 [[maybe_unused]] static std::string base64_encode(const std::uint8_t* data,
                                                   std::size_t length)
 {
@@ -445,6 +452,7 @@ static std::uint32_t rotate_left(std::uint32_t value, unsigned int bits)
     return base64_encode(digest.data(), digest.size());
 }
 
+// TCP connection to the RCON server
 static int connect_tcp(const std::string& host, const std::string& port)
 {
     static constexpr int connect_timeout_ms = 5000;
@@ -582,6 +590,7 @@ static int connect_tcp(const std::string& host, const std::string& port)
     throw std::runtime_error("Connection failed: Unable to connect to RCON server.");
 }
 
+// WebSocket handshake key
 static std::string generate_websocket_key()
 {
     std::array<std::uint8_t, 16> random_bytes{};
@@ -595,6 +604,7 @@ static std::string generate_websocket_key()
     return base64_encode(random_bytes.data(), random_bytes.size());
 }
 
+// Send the complete HTTP Upgrade request
 static void send_all(int socket_fd, const std::string& data)
 {
     std::size_t sent = 0;
@@ -617,6 +627,7 @@ static void send_all(int socket_fd, const std::string& data)
     }
 }
 
+// HTTP Upgrade response and any WebSocket data already received
 struct HttpUpgradeResponse {
     std::string headers;
     std::vector<std::uint8_t> leftover;
@@ -665,6 +676,7 @@ static std::string lowercase(std::string value)
     return value;
 }
 
+// WebSocket HTTP Upgrade handshake
 static std::vector<std::uint8_t> websocket_handshake(int socket_fd, const RconConfig& config)
 {
     const std::string client_key = generate_websocket_key();
@@ -743,6 +755,7 @@ static std::vector<std::uint8_t> websocket_handshake(int socket_fd, const RconCo
     return response.leftover;
 }
 
+// Send a masked WebSocket text frame
 static void send_websocket_text_frame(int socket_fd, const std::string& payload)
 {
     std::array<std::uint8_t, 4> mask{};
@@ -798,6 +811,7 @@ static void send_websocket_text_frame(int socket_fd, const std::string& payload)
     }
 }
 
+// Read enough socket data to complete a WebSocket frame
 static void receive_exact(int socket_fd, std::vector<std::uint8_t>& buffer,
                           std::size_t required)
 {
@@ -823,11 +837,13 @@ static void receive_exact(int socket_fd, std::vector<std::uint8_t>& buffer,
     }
 }
 
+// Decoded WebSocket frame
 struct WebSocketFrame {
     std::uint8_t opcode = 0U;
     std::vector<std::uint8_t> payload;
 };
 
+// Receive and decode a WebSocket frame
 static WebSocketFrame receive_websocket_frame(int socket_fd,
                                                std::vector<std::uint8_t>& buffer)
 {
@@ -881,6 +897,7 @@ static WebSocketFrame receive_websocket_frame(int socket_fd,
     return frame;
 }
 
+// Send a masked WebSocket control frame
 static void send_websocket_control_frame(int socket_fd, std::uint8_t opcode,
                                          const std::vector<std::uint8_t>& payload)
 {
@@ -919,6 +936,7 @@ static void send_websocket_control_frame(int socket_fd, std::uint8_t opcode,
     }
 }
 
+// Wait for the WebRCON text response and handle control frames
 static std::string receive_websocket_text_frame(int socket_fd,
                                                 std::vector<std::uint8_t>& buffer)
 {
@@ -942,6 +960,7 @@ static std::string receive_websocket_text_frame(int socket_fd,
     }
 }
 
+// Close the WebSocket without delaying command completion
 static void close_websocket(int socket_fd, std::vector<std::uint8_t>& buffer)
 {
     send_websocket_control_frame(socket_fd, 0x08U, {});
@@ -994,6 +1013,7 @@ static void close_websocket(int socket_fd, std::vector<std::uint8_t>& buffer)
     }
 }
 
+// JSON string decoding
 static unsigned int hex_value(char ch)
 {
     if (ch >= '0' && ch <= '9') return static_cast<unsigned int>(ch - '0');
@@ -1071,6 +1091,7 @@ static std::string parse_json_string(const std::string& json, std::size_t& posit
     throw std::runtime_error("WebRCON response failed: unterminated JSON string.");
 }
 
+// Extract the Message field from the WebRCON response
 static std::string extract_web_rcon_message(const std::string& json)
 {
     std::size_t position = 0U;
@@ -1106,6 +1127,7 @@ static std::string extract_web_rcon_message(const std::string& json)
     throw std::runtime_error("WebRCON response failed: Message field not found.");
 }
 
+// Local Rust server service management
 enum class ServiceBackend {
     Systemd,
     Rc
@@ -1126,6 +1148,7 @@ static ServiceBackend service_backend(const std::string& unit)
     throw std::runtime_error("Unsupported Rust service unit: " + unit);
 }
 
+// Run a local service command and return its exit status
 static int run_process(const std::vector<std::string>& arguments)
 {
     if (arguments.empty()) {
@@ -1231,6 +1254,7 @@ static void manage_rust_service(const RconConfig& config,
     }
 }
 
+// Command-line processing and command dispatch
 int main(int argc, char* argv[])
 {
     if (argc < 2) {
@@ -1306,6 +1330,7 @@ int main(int argc, char* argv[])
             return 0;
         }
 
+        // Send normal commands to RustDedicated through WebRCON
         const std::string payload = build_web_rcon_payload(command_stream.str());
 
         const int socket_fd = connect_tcp(config.ip, config.port);
