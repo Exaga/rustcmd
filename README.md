@@ -8,7 +8,7 @@
 
 This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd`. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` now uses the newer WebSocket method. Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
 
-`rustcmd` was designed to be Linux-agnostic and operate on any Linux distribution capable of hosting a Rust server. Not to be confused with the Rust programming language, this tool is for use with [Rust survival game.](https://rust.facepunch.com)
+`rustcmd` was designed to be Linux-agnostic and operate on any Linux distribution capable of hosting a Rust server. Not to be confused with the Rust programming language, this `rustcmd` command-line tool is for use with [Rust survival game](https://rust.facepunch.com) servers running locally or remotely.
 
 ## What does `rustcmd` do?
 
