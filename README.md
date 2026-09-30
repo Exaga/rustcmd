@@ -211,7 +211,7 @@ Without `-c` or `--config`, `rustcmd` checks for one configuration file in this 
 
 Configuration files are not merged. One file is selected and used.
 
-## Using rustcmd
+## Usage
 
 Once installed and configured, commands can be run simply as `rustcmd`.
 
