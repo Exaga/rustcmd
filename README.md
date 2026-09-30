@@ -2,9 +2,11 @@
 
 `rustcmd` C++ WebRCON command-line tool for (RustDedicated) WebSocket interface.
 
-This is `rustcmd` MkII, the C++ successor to the original `rustcmd`, which used 
-the legacy Valve Source Engine RCON protocol. MkII uses the newer WebSocket method. 
-Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
+## What is `rustcmd`?
+
+`rustcmd` is a command-line (CLI) tool for Rust (survival game) servers. Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to be able to use on a RCON GUI browser interface in connection with an active Rust game server.
+
+This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd`. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` now uses the newer WebSocket method. Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
 
 ## What does `rustcmd` do?
 
