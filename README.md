@@ -20,14 +20,15 @@ WebRCON command-line tool for the RustDedicated WebSocket interface.
 
 ### TL;DR version
 
-From this repository, users download, compile, install and configure `rustcmd`
-to run on their local or remotely hosted RustDedicated server(s).
+From this repository, users download, compile, install and configure 
+`rustcmd` to run on their local or remotely hosted RustDedicated 
+server(s). Easy-to-follow [README](README.md) documentation included.
 
 ### RTFA version
 
 `rustcmd` is for owners and administrators of [Rust](https://rust.facepunch.com/) 
-servers running locally or remotely. Its purpose is to be an easy and convenient 
-solution for managing a Rust server via the shell. 
+servers running locally or remotely. Its purpose is to offer an easy and 
+convenient solution for managing a Rust server via the shell. 
 
 **NOTE**: [Rust](https://rust.facepunch.com) is a multiplayer survival video 
 game by [Facepunch Studios](https://facepunch.com/). Not to be confused with 
