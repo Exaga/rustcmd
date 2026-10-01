@@ -451,7 +451,7 @@ unit PATH nor an `/etc/rc.d/` script is rejected rather than guessed.
 
 The commands listed in this section are common examples along with the 
 options and local service-management commands provided by `rustcmd` itself. 
-rustcmd is not limited to the commands shown below. Any RCON command 
+`rustcmd` is not limited to the commands shown below. Any RCON command 
 supported by the Rust server can be used with `rustcmd`.
 
 General command syntax:
