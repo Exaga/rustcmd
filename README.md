@@ -113,8 +113,8 @@ ensure it's working:
 ./rustcmd --license
 ```
 
-These informational options do not require a configuration file or a
-running Rust server in order to work.
+These informational options do not require a configuration file, or a 
+running Rust server with an active WebRCON interface, in order to work.
 
 ## Installation
 
