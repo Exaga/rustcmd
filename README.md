@@ -1,12 +1,12 @@
 # rustcmd
 
-`rustcmd` C++ WebRCON command-line tool for (RustDedicated) WebSocket interface.
+### `rustcmd` is a C++ WebRCON command-line tool for the RustDedicated WebSocket interface.
 
 ## What is `rustcmd`?
 
 Not to be confused with the Rust programming language, `rustcmd` is for owners and administrators of [Rust survival game](https://rust.facepunch.com) servers running locally or remotely.
 
-`rustcmd` is a command-line (CLI) tool that communicates directly to Rust's native WebSocket interface. Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` operates on the WebRCON protocol that allows server administrators to run Remote Console (RCON) commands over WebSockets for managing Rust game servers. This `rustcmd` tool can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to see on a RCON GUI browser interface in connection with an active Rust game server.
+`rustcmd` is a command-line (CLI) tool that communicates directly with Rust's native WebSocket interface. Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` operates on the WebRCON protocol that allows server administrators to run Remote Console (RCON) commands over WebSockets for managing Rust game servers. This `rustcmd` tool can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to see on a RCON GUI browser interface in connection with an active Rust game server.
 
 This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd` that never saw a public release. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` uses Facepunch's WebRCON protocol over standard WebSockets (RFC 6455). Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
 
@@ -104,14 +104,14 @@ Edit the configuration file:
 nano ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
-and set the correct RCON parameters for your RustDedicated WebRCON interface and PATH to your Rust server service unit. For example:
+and set the correct RCON parameters for your RustDedicated WebRCON interface and the PATH to your Rust server service unit. For example:
 
 ```ini
 RUST_RCON_IP=127.0.0.1
 RUST_RCON_PORT=28016
 RUST_RCON_PASSWORD=your-RCON-password
 
-RUST_SERVICE_UNIT=/etc/systemd/system/rust_server.service
+RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 ```
 
 If `~/.local/bin` is already in your `PATH`, the `rustcmd` installation can now be checked with:
@@ -164,7 +164,7 @@ Edit the configuration file:
 sudo nano /etc/rustcmd/rustcmd-cpp.conf
 ```
 
-and set the RCON connection details and PATH to Rust server service unit:
+Set the RCON connection details and the path to your Rust server service unit:
 
 ```ini
 RUST_RCON_IP=127.0.0.1
@@ -283,7 +283,7 @@ rustcmd server status
 
 These commands operate on the local service and are not sent through WebRCON.
 
-NB: The distinction between the two `status` command and argument **<u>is</u>** important:
+NB: The distinction between the two uses of status **<u>is</u>** important:
 
 ```bash
 rustcmd status
