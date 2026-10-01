@@ -127,7 +127,7 @@ Choose either a [user installation](#user-installation) or a
 ### User installation
 
 A user installation keeps both the executable and configuration under
-your $HOME directory and does not require root access.
+your `$HOME` directory and does not require root access.
 
 Create the local executable directory:
 
