@@ -91,9 +91,15 @@ cd rustcmd
 
 ## Build rustcmd
 
+`rustcmd` is distributed as C++ source and is intended to be compiled on the
+Linux system where it will be used. Building locally produces a native 
+executable against the target system's own C++ runtime and system libraries, 
+avoiding the cross-distribution compatibility issues that can occur with 
+pre-compiled Linux binaries.
+
 A C++17 compiler is required. Build `rustcmd` with:
 
-``` bash
+```bash
 g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -o rustcmd rustcmd.cpp
 ```
 
