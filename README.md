@@ -66,7 +66,7 @@ These informational options do not require a configuration file or a running Rus
 
 ## Installation
 
-Choose either a [user]{#user} installation or a [system-wide](#system-wide-installation) installation.
+Choose either a [user](#user) installation or a [system-wide](#system-wide-installation) installation.
 
 ### User installation
 
