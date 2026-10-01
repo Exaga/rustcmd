@@ -2,50 +2,79 @@
 
 ## What is `rustcmd`?
 
-`rustcmd` is a C++ WebRCON command-line tool for the RustDedicated WebSocket interface.
+`rustcmd` is a C++ WebRCON command-line tool for the RustDedicated
+WebSocket interface.
 
-Not to be confused with the Rust programming language, `rustcmd` is for owners and administrators of [Rust survival game](https://rust.facepunch.com) servers running locally or remotely.
+Not to be confused with the Rust programming language, `rustcmd` is for
+owners and administrators of [Rust survival
+game](https://rust.facepunch.com) servers running locally or remotely.
 
-Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` operates on the WebRCON protocol that allows server administrators to run Remote Console (RCON) commands over WebSockets for managing Rust game servers. This `rustcmd` tool can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to see on a RCON GUI browser interface in connection with an active Rust game server.
+Its purpose is to be an easy and convenient solution for managing a Rust
+server via the shell. `rustcmd` operates on the WebRCON protocol that
+allows server administrators to run Remote Console (RCON) commands over
+WebSockets for managing Rust game servers. This `rustcmd` tool can
+handle server starts, stops, restarts, output the server status, and use
+all the commands you'd generally expect to see on a RCON GUI browser
+interface in connection with an active Rust game server.
 
-This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd` that never saw a public release. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` uses Facepunch's WebRCON protocol over standard WebSockets (RFC 6455). Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
+This is technically `rustcmd` \[MkII\], the C++ successor to the
+original `rustcmd` that never saw a public release. The original tool
+used the legacy Valve Source Engine RCON protocol. `rustcmd` uses
+Facepunch's WebRCON protocol over standard WebSockets (RFC 6455).
+Because, according to Facepunch, ["Websocket RCON is the
+future."](https://rust.facepunch.com/news/devblog-99)
 
-- `rustcmd` was designed to be Linux distribution-agnostic and operate on any Linux system capable of hosting a Rust server. 
+-   `rustcmd` was designed to be Linux distribution-agnostic and operate
+    on any Linux system capable of hosting a Rust server.
 
-- `rustcmd` is released under the [MIT License](LICENSE).
+-   `rustcmd` is released under the [MIT License](LICENSE).
 
 ## Why does `rustcmd` exist?
 
-`rustcmd` was created after existing solutions were found to be unsuitable or lacking in functionality. C++ was chosen as a fast and practical solution without scripting runtimes or heavy external dependencies. After proving itself to be an impressive and effective standalone tool for managing a Rust server, additional command-line features were added and `rustcmd` was made publicly available for other server owners and administrators who might find it useful.
-
+`rustcmd` was created after existing solutions were found to be
+unsuitable or lacking in functionality. C++ was chosen as a fast and
+practical solution without scripting runtimes or heavy external
+dependencies. After proving itself to be an impressive and effective
+standalone tool for managing a Rust server, additional command-line
+features were added and `rustcmd` was made publicly available for other
+server owners and administrators who might find it useful.
 
 ## What does `rustcmd` do?
 
-`rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, and purposely avoids heavy, external third-party network libraries. `rustcmd` is self-contained and self-sufficient. It's very quick in operation, offering instant command execution and immediate output. 
+`rustcmd` runs from the command-line and sends RustDedicated console
+commands to the server through its WebRCON WebSocket interface and
+prints the returned response. It's a standalone C++17 program using the
+C++ standard library and POSIX sockets, and purposely avoids heavy,
+external third-party network libraries. `rustcmd` is self-contained and
+self-sufficient. It's very quick in operation, offering instant command
+execution and immediate output.
 
-- `rustcmd` also provides four local service-management commands for starting, stopping, restarting, and checking the status of the Rust server service. 
-- `rustcmd` can also be used for automating Rust server commands and tasks via `cron`.
+-   `rustcmd` also provides four local service-management commands for
+    starting, stopping, restarting, and checking the status of the Rust
+    server service.
+-   `rustcmd` can also be used for automating Rust server commands and
+    tasks via `cron`.
 
-######################
+###################### 
 
 ## Contents
 
-- [Download the source](#download-the-source)
-- [Build rustcmd](#build-rustcmd)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Verbose error output](#verbose-error-output)
-- [Local service management](#local-service-management)
-- [Command reference](#command-reference)
+-   [Download the source](#download-the-source)
+-   [Build rustcmd](#build-rustcmd)
+-   [Installation](#installation)
+-   [Configuration](#configuration)
+-   [Usage](#usage)
+-   [Verbose error output](#verbose-error-output)
+-   [Local service management](#local-service-management)
+-   [Command reference](#command-reference)
 
-######################
+###################### 
 
 ## Download the source
 
 Clone the `rustcmd` repository and enter the new directory:
 
-```bash
+``` bash
 git clone https://github.com/Exaga/rustcmd
 cd rustcmd
 ```
@@ -54,64 +83,69 @@ cd rustcmd
 
 A C++17 compiler is required. Build `rustcmd` with:
 
-```bash
+``` bash
 g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -o rustcmd rustcmd.cpp
 ```
 
-Before configuring it for installation, you can test the executable to ensure it's working:
+Before configuring it for installation, you can test the executable to
+ensure it's working:
 
-```bash
+``` bash
 ./rustcmd --help
 ./rustcmd --version
 ./rustcmd --url
 ./rustcmd --license
 ```
 
-These informational options do not require a configuration file or a running Rust server in order to work.
+These informational options do not require a configuration file or a
+running Rust server in order to work.
 
 ## Installation
 
-Choose either a [user installation](#user-installation) or a [system-wide](#system-wide-installation) installation.
+Choose either a [user installation](#user-installation) or a
+[system-wide](#system-wide-installation) installation.
 
 ### User installation
 
-A user installation keeps both the executable and configuration under your home directory and does not require root access.
+A user installation keeps both the executable and configuration under
+your home directory and does not require root access.
 
 Create the local executable directory:
 
-```bash
+``` bash
 mkdir -p ~/.local/bin
 ```
 
 Copy `rustcmd` into it:
 
-```bash
+``` bash
 cp rustcmd ~/.local/bin/rustcmd
 chmod 755 ~/.local/bin/rustcmd
 ```
 
 Create the configuration directory:
 
-```bash
+``` bash
 mkdir -p ~/.config/rustcmd
 ```
 
 Copy the supplied configuration file:
 
-```bash
+``` bash
 cp rustcmd-cpp.conf ~/.config/rustcmd/rustcmd-cpp.conf
 chmod 600 ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
 Edit the configuration file:
 
-```bash
+``` bash
 nano ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
-and set the correct RCON parameters for your RustDedicated WebRCON interface and the PATH to your Rust server service unit. For example:
+and set the correct RCON parameters for your RustDedicated WebRCON
+interface and the PATH to your Rust server service unit. For example:
 
-```ini
+``` ini
 RUST_RCON_IP=127.0.0.1
 RUST_RCON_PORT=28016
 RUST_RCON_PASSWORD=your-RCON-password
@@ -119,44 +153,48 @@ RUST_RCON_PASSWORD=your-RCON-password
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 ```
 
-If `~/.local/bin` is already in your `$PATH`, the `rustcmd` installation can now be checked with:
+If `~/.local/bin` is already in your `$PATH`, the `rustcmd` installation
+can now be checked with:
 
-```bash
+``` bash
 rustcmd --version
 ```
 
 If your shell cannot find `rustcmd`, check your current `$PATH`:
 
-```bash
+``` bash
 echo "$PATH"
 ```
 
 If `~/.local/bin` is not included, add it to your shell configuration:
 
-```bash
+``` bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-For Bash, add this line to `~/.bashrc` (or `~/.profile` for login shells), then start a new shell or re-log in:
+For Bash, add this line to `~/.bashrc` (or `~/.profile` for login
+shells), then start a new shell or re-log in:
 
-```bash
+``` bash
 source ~/.bashrc
 ```
 
 ### System-wide installation
 
-A system-wide installation places the executable in `/usr/local/bin` and the configuration in `/etc/rustcmd`. 
+A system-wide installation places the executable in `/usr/local/bin` and
+the configuration in `/etc/rustcmd`.
 
 Install the executable:
 
-```bash
+``` bash
 sudo cp rustcmd /usr/local/bin/rustcmd
 sudo chmod 755 /usr/local/bin/rustcmd
 ```
 
-Create the configuration directory and install the supplied configuration:
+Create the configuration directory and install the supplied
+configuration:
 
-```bash
+``` bash
 sudo mkdir -p /etc/rustcmd
 sudo cp rustcmd-cpp.conf /etc/rustcmd/rustcmd-cpp.conf
 sudo chown root:root /etc/rustcmd/rustcmd-cpp.conf
@@ -165,13 +203,14 @@ sudo chmod 600 /etc/rustcmd/rustcmd-cpp.conf
 
 Edit the configuration file:
 
-```bash
+``` bash
 sudo nano /etc/rustcmd/rustcmd-cpp.conf
 ```
 
-Set the RCON connection details and the PATH to your Rust server service unit:
+Set the RCON connection details and the PATH to your Rust server service
+unit:
 
-```ini
+``` ini
 RUST_RCON_IP=127.0.0.1
 RUST_RCON_PORT=28016
 RUST_RCON_PASSWORD=your-RCON-password
@@ -181,17 +220,19 @@ RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 
 Check the installed executable:
 
-```bash
+``` bash
 rustcmd --version
 ```
 
-With root:root ownership and mode 0600, the system-wide configuration is readable only by root. If ordinary users need to use the machine-wide configuration, assign an appropriate group and use mode 0640.
+With root:root ownership and mode 0600, the system-wide configuration is
+readable only by root. If ordinary users need to use the machine-wide
+configuration, assign an appropriate group and use mode 0640.
 
 ## Configuration
 
 The following settings are used by `rustcmd`:
 
-```ini
+``` ini
 RUST_RCON_IP=127.0.0.1
 RUST_RCON_PORT=28016
 RUST_RCON_PASSWORD=your-RCON-password
@@ -199,33 +240,67 @@ RUST_RCON_PASSWORD=your-RCON-password
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 ```
 
-`RUST_RCON_IP`, `RUST_RCON_PORT` and `RUST_RCON_PASSWORD` are required for WebRCON commands.
+`RUST_RCON_IP`, `RUST_RCON_PORT` and `RUST_RCON_PASSWORD` are required
+for WebRCON commands.
 
-`RUST_SERVICE_UNIT` is used by the local `rustcmd server ...` commands. Normal WebRCON commands do not depend on service management.
+`RUST_SERVICE_UNIT` is used by the local `rustcmd server ...` commands.
+Normal WebRCON commands do not depend on service management.
 
-The configuration contains the RCON password and should not be readable by unauthorised users. Use mode 0600 for a root-only configuration, or 0640 when access is required by members of an appropriate group.
+The configuration contains the RCON password and should not be readable
+by unauthorised users. Use mode 0600 for a root-only configuration, or
+0640 when access is required by members of an appropriate group.
 
 ### Configuration lookup
 
 An explicit configuration file takes priority:
 
-```bash
+``` bash
 rustcmd --config /path/to/rustcmd-cpp.conf status
 ```
 
 or:
 
-```bash
+``` bash
 rustcmd -c /path/to/rustcmd-cpp.conf status
 ```
 
-Without `-c` or `--config`, `rustcmd` checks for one configuration file in this order:
+Without `-c` or `--config`, `rustcmd` checks for one configuration file
+in this order:
 
-1. `$XDG_CONFIG_HOME/rustcmd/rustcmd-cpp.conf`
-2. `$HOME/.config/rustcmd/rustcmd-cpp.conf` when `XDG_CONFIG_HOME` is not set
-3. `/etc/rustcmd/rustcmd-cpp.conf`
+1.  `$XDG_CONFIG_HOME/rustcmd/rustcmd-cpp.conf`
+2.  `$HOME/.config/rustcmd/rustcmd-cpp.conf` when `XDG_CONFIG_HOME` is
+    not set
+3.  `/etc/rustcmd/rustcmd-cpp.conf`
 
 Configuration files are not merged. One file only is selected and used.
+
+### Multiple RustDedicated instances
+
+If more than one RustDedicated server instance is running on the same
+system, each instance should have its own `rustcmd` configuration file
+containing the appropriate RCON connection details and service
+configuration.
+
+Only one `rustcmd` executable is required. Select the configuration for
+the RustDedicated instance you intend to administer with `-c` or
+`--config`:
+
+``` bash
+rustcmd -c /path/to/server1/rustcmd-cpp.conf status
+rustcmd -c /path/to/server2/rustcmd-cpp.conf status
+```
+
+The same applies to local service-management commands:
+
+``` bash
+rustcmd -c /path/to/server1/rustcmd-cpp.conf server status
+rustcmd -c /path/to/server2/rustcmd-cpp.conf server status
+```
+
+`rustcmd` does not maintain named server profiles or automatically
+select between multiple RustDedicated instances. Without `-c` or
+`--config`, the normal configuration lookup order described above is
+used.
 
 ## Usage
 
@@ -233,33 +308,34 @@ Once installed and configured, commands can be run simply as `rustcmd`.
 
 Check the Rust server:
 
-```bash
+``` bash
 rustcmd status
 ```
 
 Request server information:
 
-```bash
+``` bash
 rustcmd serverinfo
 ```
 
-Structured JSON returned by `serverinfo` is printed in a readable format.
+Structured JSON returned by `serverinfo` is printed in a readable
+format.
 
 Send a message to players:
 
-```bash
+``` bash
 rustcmd say "Hello World!"
 ```
 
 Save the server:
 
-```bash
+``` bash
 rustcmd server.save
 ```
 
 Other RustDedicated console commands can be supplied in the same way:
 
-```text
+``` text
 rustcmd <command> [arguments]
 ```
 
@@ -267,9 +343,11 @@ The command and its arguments are passed through WebRCON.
 
 ## Verbose error output
 
-Normal connection failure error outputs are deliberately suppressed. Add `--verbose` when you need the underlying socket or address-resolution detail:
+Normal connection failure error outputs are deliberately suppressed. Add
+`--verbose` when you need the underlying socket or address-resolution
+detail:
 
-```bash
+``` bash
 rustcmd status --verbose
 ```
 
@@ -277,71 +355,83 @@ rustcmd status --verbose
 
 ## Local service management
 
-Four commands are reserved for management of the local Rust server service unit: 
+Four commands are reserved for management of the local Rust server
+service unit:
 
-```bash
+``` bash
 rustcmd server start
 rustcmd server stop
 rustcmd server restart
 rustcmd server status
 ```
 
-These commands operate on the local service and are not sent through WebRCON.
+These commands operate on the local service and are not sent through
+WebRCON.
 
-NB: The distinction between the two uses of status **<u>is</u>** important:
+NB: The distinction between the two uses of status
+**`<u>`{=html}is`</u>`{=html}** important:
 
-```bash
+``` bash
 rustcmd status
 ```
 
-- checks and outputs the RustDedicated `status` through WebRCON.
+-   checks and outputs the RustDedicated `status` through WebRCON.
 
-```bash
+``` bash
 rustcmd server status
 ```
 
-- checks and outputs the state of the local operating-system service.
+-   checks and outputs the state of the local operating-system service.
 
 ### systemd
 
 For a systemd installation, configure the full service unit PATH:
 
-```ini
+``` ini
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 ```
 
-`rustcmd` uses `systemctl` for start, stop and restart, and `systemctl is-active` for `server status`.
+`rustcmd` uses `systemctl` for start, stop and restart, and
+`systemctl is-active` for `server status`.
 
-systemd service operations are executed through `sudo`. The user running `rustcmd` must already have the appropriate sudo permission.
+systemd service operations are executed through `sudo`. The user running
+`rustcmd` must already have the appropriate sudo permission.
 
 ### BSD-style and SysV init scripts
 
 For a rc-style installation, configure the full service-script PATH:
 
-```ini
+``` ini
 RUST_SERVICE_UNIT=/etc/rc.d/rc.rustserver
 ```
 
-`rustcmd` executes the configured script directly with `start`, `stop`, `restart` or `status`.
+`rustcmd` executes the configured script directly with `start`, `stop`,
+`restart` or `status`.
 
-It does not use `sudo`, change permissions, or attempt to obtain privileges for an `/etc/rc.d/` script. Service-script permissions remain the responsibility of the system administrator (i.e. *YOU*).
+It does not use `sudo`, change permissions, or attempt to obtain
+privileges for an `/etc/rc.d/` script. Service-script permissions remain
+the responsibility of the system administrator (i.e. *YOU*).
 
-NB: A configured service PATH that is neither recognised as a systemd unit PATH nor an `/etc/rc.d/` script is rejected rather than guessed.
+NB: A configured service PATH that is neither recognised as a systemd
+unit PATH nor an `/etc/rc.d/` script is rejected rather than guessed.
 
 ## Command reference
 
-The commands listed in this section are common examples along with the options and local service-management commands provided by `rustcmd` itself. `rustcmd` is not limited to the commands shown below. Any RCON command supported by the Rust server can be used with `rustcmd`.
+The commands listed in this section are common examples along with the
+options and local service-management commands provided by `rustcmd`
+itself. `rustcmd` is not limited to the commands shown below. Any RCON
+command supported by the Rust server can be used with `rustcmd`.
 
 General command syntax:
 
-```text
+``` text
 rustcmd <command> [arguments]
 rustcmd [options]
 ```
 
 Common WebRCON commands:
 
-```bash
+``` bash
 rustcmd status
 rustcmd status --verbose
 rustcmd serverinfo
@@ -349,11 +439,12 @@ rustcmd say "Hello World!"
 rustcmd server.save
 ```
 
-`rustcmd` is not limited to those examples. Other RustDedicated console commands are passed through WebRCON.
+`rustcmd` is not limited to those examples. Other RustDedicated console
+commands are passed through WebRCON.
 
 Local service commands:
 
-```bash
+``` bash
 rustcmd server start
 rustcmd server stop
 rustcmd server restart
@@ -362,7 +453,7 @@ rustcmd server status
 
 Options:
 
-```text
+``` text
 -h, -?, --help          Show this help
 -v, --version           Show version information
 -U, --url               Show official rustcmd project URL
@@ -377,9 +468,10 @@ Running `rustcmd --verbose` without a command displays the help text.
 
 ## Project URL
 
-The official project URL is compiled into `rustcmd` and can be displayed without a configuration file or network connection:
+The official project URL is compiled into `rustcmd` and can be displayed
+without a configuration file or network connection:
 
-```bash
+``` bash
 rustcmd --url
 ```
 
@@ -389,16 +481,18 @@ The project is maintained at:
 
 ## Changelog
 
-The development history and version changes are recorded in [CHANGELOG.md](CHANGELOG.md).
+The development history and version changes are recorded in
+[CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
-`rustcmd` is released under the [MIT License](LICENSE). The complete license text is included in the source and can also be displayed with:
+`rustcmd` is released under the [MIT License](LICENSE). The complete
+license text is included in the source and can also be displayed with:
 
-```bash
+``` bash
 rustcmd --license
 ```
 
 Copyright © 2026 Exaga - penthux.net
 
-\#EOF<*>
+#EOF\<\*\>
