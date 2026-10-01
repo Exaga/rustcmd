@@ -1,6 +1,6 @@
 # Changelog
 
-Development history on `rustcmd` C++ WebRCON tool for (RustDedicated) WebSocket interface
+Development history on `rustcmd` C++ WebRCON tool for RustDedicated WebSocket interface
 
 This is `rustcmd` MkII, following in the footsteps of the former `rustcmd` tool
 that used the legacy Valve Source Engine RCON protocol. This `rustcmd` tool is
