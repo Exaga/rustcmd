@@ -53,7 +53,7 @@ A C++17 compiler is required. Build `rustcmd` with:
 g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -o rustcmd rustcmd.cpp
 ```
 
-Before installing it, you can check the executable directly from the repository:
+Before configuring it for installation, you can test the executable to ensure things are working:
 
 ```bash
 ./rustcmd --help
@@ -66,7 +66,7 @@ These informational options do not require a configuration file or a running Rus
 
 ## Installation
 
-Choose either a user installation or a system-wide installation.
+Choose either a [user]{#user} installation or a [system-wide](#system-wide-installation) installation.
 
 ### User installation
 
@@ -98,10 +98,10 @@ cp rustcmd-cpp.conf ~/.config/rustcmd/rustcmd-cpp.conf
 chmod 600 ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
-Edit:
+Edit the configuration file:
 
-```text
-~/.config/rustcmd/rustcmd-cpp.conf
+```bash
+nano ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
 and set the connection details for your RustDedicated WebRCON interface:
@@ -130,7 +130,7 @@ and add `~/.local/bin` using the normal method for your shell or Linux distribut
 
 ### System-wide installation
 
-A system-wide installation places the executable in `/usr/local/bin` and the configuration in `/etc/rustcmd`.
+A system-wide installation places the executable in `/usr/local/bin` and the configuration in `/etc/rustcmd`. This must be done under 'root' user.
 
 Install the executable:
 
@@ -148,10 +148,10 @@ sudo chown root:root /etc/rustcmd/rustcmd-cpp.conf
 sudo chmod 600 /etc/rustcmd/rustcmd-cpp.conf
 ```
 
-Edit:
+Edit the configuration file:
 
-```text
-/etc/rustcmd/rustcmd-cpp.conf
+```bash
+nano /etc/rustcmd/rustcmd-cpp.conf
 ```
 
 and set the connection details:
