@@ -127,7 +127,7 @@ Choose either a [user installation](#user-installation) or a
 ### User installation
 
 A user installation keeps both the executable and configuration under
-your `$HOME` directory and does not require root access.
+your `$HOME` directory and does not require `root` access.
 
 Create the local executable directory:
 
@@ -244,7 +244,7 @@ rustcmd --version
 ```
 
 With root:root ownership and mode 0600, the system-wide configuration is
-readable only by root. If ordinary users need to use the machine-wide
+readable only by `root`. If ordinary users need to use the machine-wide
 configuration, assign an appropriate group and use mode 0640.
 
 ## Configuration
