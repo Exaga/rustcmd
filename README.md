@@ -283,23 +283,23 @@ rustcmd server status
 
 These commands operate on the local service and are not sent through WebRCON.
 
-The distinction between the two status commands is **important**:
+NB: The distinction between the two `status` command and argument **<u>is</u>** important:
 
 ```bash
 rustcmd status
 ```
 
-- sends the RustDedicated `status` command through WebRCON.
+- checks and outputs the RustDedicated `status` through WebRCON.
 
 ```bash
 rustcmd server status
 ```
 
-- checks the state of the local operating-system service.
+- checks and outputs the state of the local operating-system service.
 
 ### systemd
 
-For a systemd installation, configure the full service-unit path:
+For a systemd installation, configure the full service unit path:
 
 ```ini
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
@@ -309,9 +309,9 @@ RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 
 systemd service operations are executed through `sudo`. The user running `rustcmd` must already have the appropriate sudo permission.
 
-### `/etc/rc.d` service scripts
+### BSD-style and SysV init scripts
 
-For an rc-style installation, configure the full service-script path:
+For a rc-style installation, configure the full service-script path:
 
 ```ini
 RUST_SERVICE_UNIT=/etc/rc.d/rc.rustserver
@@ -319,13 +319,15 @@ RUST_SERVICE_UNIT=/etc/rc.d/rc.rustserver
 
 `rustcmd` executes the configured script directly with `start`, `stop`, `restart` or `status`.
 
-It does not use `sudo`, change permissions or attempt to obtain privileges for an `/etc/rc.d/` script. Service-script permissions remain the responsibility of the system administrator.
+It does not use `sudo`, change permissions, or attempt to obtain privileges for an `/etc/rc.d/` script. Service-script permissions remain the responsibility of the system administrator (i.e. *YOU*).
 
-A configured service path that is neither recognised as a systemd unit path nor an `/etc/rc.d/` script is rejected rather than guessed.
+NB: A configured service path that is neither recognised as a systemd unit path nor an `/etc/rc.d/` script is rejected rather than guessed.
 
 ## Command reference
 
-General command forms:
+The commands listed in this section are common examples along with the options and local service-management commands provided by `rustcmd` itself. `rustcmd` is not limited to the commands shown below. Any RCON command supported by the Rust server can be used with `rustcmd`.
+
+General command syntax:
 
 ```text
 rustcmd <command> [arguments]
@@ -334,7 +336,7 @@ rustcmd [options]
 
 Common WebRCON commands:
 
-```text
+```bash
 rustcmd status
 rustcmd status --verbose
 rustcmd serverinfo
@@ -346,7 +348,7 @@ rustcmd server.save
 
 Local service commands:
 
-```text
+```bash
 rustcmd server start
 rustcmd server stop
 rustcmd server restart
@@ -382,7 +384,7 @@ The project is maintained at:
 
 ## Changelog
 
-The development history and version changes are recorded in `CHANGELOG.md`.
+The development history and version changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
