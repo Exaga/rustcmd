@@ -1,5 +1,8 @@
 # rustcmd
 
+`rustcmd` is a C++ WebRCON command-line tool for the RustDedicated
+WebSocket interface.
+
 ## Contents
 
 -   [What is rustcmd](#what-is-rustcmd)
@@ -15,9 +18,6 @@
 ###################### 
 
 ## What is `rustcmd`?
-
-`rustcmd` is a C++ WebRCON command-line tool for the RustDedicated
-WebSocket interface.
 
 Not to be confused with the Rust programming language, `rustcmd` is for
 owners and administrators of [Rust survival
