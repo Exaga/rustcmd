@@ -8,14 +8,15 @@ WebSocket interface.
 Not to be confused with the Rust programming language, `rustcmd` is for
 owners and administrators of [Rust survival
 game](https://rust.facepunch.com) servers running locally or remotely.
-
 Its purpose is to be an easy and convenient solution for managing a Rust
-server via the shell. `rustcmd` operates on the WebRCON protocol that
-allows server administrators to run Remote Console (RCON) commands over
-WebSockets for managing Rust game servers. This `rustcmd` tool can
-handle server starts, stops, restarts, output the server status, and use
-all the commands you'd generally expect to see on a RCON GUI browser
-interface in connection with an active Rust game server.
+server via the shell. 
+
+`rustcmd` is specifically designed around RustDedicated and its WebRCON 
+interface. It's a standalone C++17 implementation using the standard 
+library and POSIX sockets, with no third-party WebSocket or JSON library. 
+The TCP connection, RFC 6455 handshake, SHA-1/Base64, WebSocket framing, 
+masking and control-frame handling are implemented directly in `rustcmd` 
+itself.
 
 This is technically `rustcmd` \[MkII\], the C++ successor to the
 original `rustcmd` that never saw a public release. The original tool
@@ -24,20 +25,21 @@ Facepunch's WebRCON protocol over standard WebSockets (RFC 6455).
 Because, according to Facepunch, ["Websocket RCON is the
 future."](https://rust.facepunch.com/news/devblog-99)
 
--   `rustcmd` was designed to be Linux distribution-agnostic and operate
+- `rustcmd` was designed to be Linux distribution-agnostic and operate
     on any Linux system capable of hosting a Rust server.
 
--   `rustcmd` is released under the [MIT License](LICENSE).
+- `rustcmd` is released under the [MIT License](LICENSE).
 
 ## Why does `rustcmd` exist?
 
-`rustcmd` was created after existing solutions were found to be
-unsuitable or lacking in functionality. C++ was chosen as a fast and
-practical solution without scripting runtimes or heavy external
-dependencies. After proving itself to be an impressive and effective
-standalone tool for managing a Rust server, additional command-line
-features were added and `rustcmd` was made publicly available for other
-server owners and administrators who might find it useful.
+`rustcmd` was created after existing solutions were found to be unsuitable, 
+relied on external dependencies, or lacked overall functionality. Something 
+exceptionally fast, lightweight, and entirely command-line driven was needed. 
+C++ was chosen as a high-performance native solution without any scripting 
+runtimes or external dependencies. After proving itself to be an impressive 
+and effective standalone tool for managing a Rust server, additional features 
+were added and `rustcmd` was made publicly available for other server owners 
+and admins who might find it useful.
 
 ## What does `rustcmd` do?
 
