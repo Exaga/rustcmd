@@ -19,11 +19,12 @@ WebSocket interface.
 
 ## What is `rustcmd`?
 
-Not to be confused with the Rust programming language, `rustcmd` is for
-owners and administrators of [Rust survival
-game](https://rust.facepunch.com) servers running locally or remotely.
-Its purpose is to be an easy and convenient solution for managing a Rust
-server via the shell. 
+`rustcmd` is for owners and administrators of [Rust](https://rust.facepunch.com) 
+servers running locally or remotely. Its purpose is to be an easy and convenient 
+solution for managing a Rust server via the shell. 
+
+**NOTE**: [Rust](https://rust.facepunch.com) is a multiplayer survival game by 
+Facepunch Studios. Not to be confused with the Rust programming language. 
 
 `rustcmd` is specifically designed around RustDedicated and its WebRCON 
 interface. It's a standalone C++17 implementation using the standard 
