@@ -283,7 +283,7 @@ rustcmd server status
 
 These commands operate on the local service and are not sent through WebRCON.
 
-The distinction between the two status commands is *important*:
+The distinction between the two status commands is **important**:
 
 ```bash
 rustcmd status
