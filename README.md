@@ -281,21 +281,43 @@ system, each instance should have its own `rustcmd` configuration file
 containing the appropriate RCON connection details and service
 configuration.
 
-Only one `rustcmd` executable is required. Select the configuration for
-the RustDedicated instance you intend to administer with `-c` or
-`--config`:
+Only one `rustcmd` executable is required. The default
+`rustcmd-cpp.conf` filename can be retained for a single-server
+installation or the default server. For additional server instances, a
+recommended naming convention is:
+
+``` text
+rustcmd-<identity>.conf
+```
+
+where `<identity>` corresponds to the RustDedicated `server.identity`
+where practical. For example:
+
+``` text
+~/.config/rustcmd/
+├── rustcmd-cpp.conf
+├── rustcmd-vanilla.conf
+├── rustcmd-modded.conf
+└── rustcmd-staging.conf
+```
+
+Select the configuration for the RustDedicated instance you intend to
+administer with `-c` or `--config`:
 
 ``` bash
-rustcmd -c /path/to/server1/rustcmd-cpp.conf status
-rustcmd -c /path/to/server2/rustcmd-cpp.conf status
+rustcmd -c ~/.config/rustcmd/rustcmd-vanilla.conf status
+rustcmd -c ~/.config/rustcmd/rustcmd-modded.conf status
 ```
 
 The same applies to local service-management commands:
 
 ``` bash
-rustcmd -c /path/to/server1/rustcmd-cpp.conf server status
-rustcmd -c /path/to/server2/rustcmd-cpp.conf server status
+rustcmd -c ~/.config/rustcmd/rustcmd-vanilla.conf server status
+rustcmd -c ~/.config/rustcmd/rustcmd-modded.conf server status
 ```
+
+The `rustcmd-<identity>.conf` filename is a recommended convention only;
+`-c` and `--config` accept any valid configuration pathname.
 
 `rustcmd` does not maintain named server profiles or automatically
 select between multiple RustDedicated instances. Without `-c` or
