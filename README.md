@@ -6,17 +6,17 @@
 
 Not to be confused with the Rust programming language, `rustcmd` is for owners and administrators of [Rust survival game](https://rust.facepunch.com) servers running locally or remotely.
 
-`rustcmd` is a command-line (CLI) tool that communicates directly to Rust's native WebSocket interface. Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` operates on the WebRCON protocol that allows server administrators to run Remote Console (RCON) commands over secure WebSockets for managing Rust game servers. This `rustcmd` tool can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to see on a RCON GUI browser interface in connection with an active Rust game server.
+`rustcmd` is a command-line (CLI) tool that communicates directly to Rust's native WebSocket interface. Its purpose is to be an easy and convenient solution for managing a Rust server via the shell. `rustcmd` operates on the WebRCON protocol that allows server administrators to run Remote Console (RCON) commands over WebSockets for managing Rust game servers. This `rustcmd` tool can handle server starts, stops, restarts, output the server status, and use all the commands you'd generally expect to see on a RCON GUI browser interface in connection with an active Rust game server.
 
 This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd` that never saw a public release. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` uses Facepunch's WebRCON protocol over standard WebSockets (RFC 6455). Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
 
-- `rustcmd` was designed to be Linux-agnostic and operate on any Linux distribution capable of hosting a Rust server. 
+- `rustcmd` was designed to be Linux distribution-agnostic and operate on any Linux system capable of hosting a Rust server. 
 
 - `rustcmd` is released under the [MIT License](LICENSE).
 
 ## What does `rustcmd` do?
 
-`rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, and purposely avoids heavy, external third-party network libraries. `rustcmd` is self-contained and self-sufficient. As a result, it's very quick in operation, offering instant command execution and immediate output. 
+`rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, and purposely avoids heavy, external third-party network libraries. `rustcmd` is self-contained and self-sufficient. It's very quick in operation, offering instant command execution and immediate output. 
 
 - `rustcmd` also provides four local service-management commands for starting, stopping, restarting, and checking the status of the Rust server service. 
 - `rustcmd` can also be used for automating Rust server commands and tasks via `cron`.
