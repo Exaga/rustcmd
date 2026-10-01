@@ -30,7 +30,7 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Verbose errors](#verbose-errors)
+- [Verbose error ouput](#verbose-error-output)
 - [Local service management](#local-service-management)
 - [Command reference](#command-reference)
 
@@ -38,7 +38,7 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 
 ## Download the source
 
-Clone the repository and enter the new directory:
+Clone the `rustcmd` repository and enter the new directory:
 
 ```bash
 git clone https://github.com/Exaga/rustcmd
@@ -53,7 +53,7 @@ A C++17 compiler is required. Build `rustcmd` with:
 g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic -o rustcmd rustcmd.cpp
 ```
 
-Before configuring it for installation, you can test the executable to ensure things are working:
+Before configuring it for installation, you can test the executable to ensure it's working:
 
 ```bash
 ./rustcmd --help
@@ -62,7 +62,7 @@ Before configuring it for installation, you can test the executable to ensure th
 ./rustcmd --license
 ```
 
-These informational options do not require a configuration file or a running Rust server.
+These informational options do not require a configuration file or a running Rust server in order to work.
 
 ## Installation
 
@@ -104,17 +104,17 @@ Edit the configuration file:
 nano ~/.config/rustcmd/rustcmd-cpp.conf
 ```
 
-and set the connection details for your RustDedicated WebRCON interface:
+and set the correct RCON parameters for your RustDedicated WebRCON interface and PATH to your Rust server service unit. For example:
 
 ```ini
 RUST_RCON_IP=127.0.0.1
 RUST_RCON_PORT=28016
 RUST_RCON_PASSWORD=your-RCON-password
 
-RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
+RUST_SERVICE_UNIT=/etc/systemd/system/rust_server.service
 ```
 
-If `~/.local/bin` is already in your `PATH`, the installation can now be checked with:
+If `~/.local/bin` is already in your `PATH`, the `rustcmd` installation can now be checked with:
 
 ```bash
 rustcmd --version
@@ -126,11 +126,21 @@ If your shell cannot find `rustcmd`, check your current `PATH`:
 echo "$PATH"
 ```
 
-and add `~/.local/bin` using the normal method for your shell or Linux distribution.
+If `~/.local/bin` is not included, add it to your shell configuration:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+For Bash, add this line to `~/.bashrc` (or `~/.profile` for login shells), then start a new shell or re-log in:
+
+```bash
+source ~/.bashrc
+```
 
 ### System-wide installation
 
-A system-wide installation places the executable in `/usr/local/bin` and the configuration in `/etc/rustcmd`. This must be done under 'root' user.
+A system-wide installation places the executable in `/usr/local/bin` and the configuration in `/etc/rustcmd`. 
 
 Install the executable:
 
@@ -151,10 +161,10 @@ sudo chmod 600 /etc/rustcmd/rustcmd-cpp.conf
 Edit the configuration file:
 
 ```bash
-nano /etc/rustcmd/rustcmd-cpp.conf
+sudo nano /etc/rustcmd/rustcmd-cpp.conf
 ```
 
-and set the connection details:
+and set the RCON connection details and PATH to Rust server service unit:
 
 ```ini
 RUST_RCON_IP=127.0.0.1
@@ -170,7 +180,7 @@ Check the installed executable:
 rustcmd --version
 ```
 
-With `root:root` ownership and mode `0600`, the system-wide configuration is readable only by root. If ordinary users need to use the machine-wide configuration, the system administrator must choose suitable group ownership and permissions.
+With root:root ownership and mode 0600, the system-wide configuration is readable only by root. If ordinary users need to use the machine-wide configuration, assign an appropriate group and use mode 0640.
 
 ## Configuration
 
@@ -188,7 +198,7 @@ RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 
 `RUST_SERVICE_UNIT` is used by the local `rustcmd server ...` commands. Normal WebRCON commands do not depend on service management.
 
-Protect any configuration file containing the RCON password appropriately.
+The configuration contains the RCON password and should not be readable by unauthorised users. Use mode 0600 for a root-only configuration, or 0640 when access is required by members of an appropriate group.
 
 ### Configuration lookup
 
@@ -210,7 +220,7 @@ Without `-c` or `--config`, `rustcmd` checks for one configuration file in this 
 2. `$HOME/.config/rustcmd/rustcmd-cpp.conf` when `XDG_CONFIG_HOME` is not set
 3. `/etc/rustcmd/rustcmd-cpp.conf`
 
-Configuration files are not merged. One file is selected and used.
+Configuration files are not merged. One file only is selected and used.
 
 ## Usage
 
@@ -250,9 +260,9 @@ rustcmd <command> [arguments]
 
 The command and its arguments are passed through WebRCON.
 
-## Verbose errors
+## Verbose error output
 
-Normal connection failures are deliberately concise. Add `--verbose` when you need the underlying socket or address-resolution detail:
+Normal connection failure error outputs are deliberately suppressed. Add `--verbose` when you need the underlying socket or address-resolution detail:
 
 ```bash
 rustcmd status --verbose
@@ -262,7 +272,7 @@ rustcmd status --verbose
 
 ## Local service management
 
-Four commands are reserved for management of the local Rust server service:
+Four commands are reserved for management of the local Rust server service unit: 
 
 ```bash
 rustcmd server start
@@ -273,19 +283,19 @@ rustcmd server status
 
 These commands operate on the local service and are not sent through WebRCON.
 
-The distinction between the two status commands is important:
+The distinction between the two status commands is *important*:
 
 ```bash
 rustcmd status
 ```
 
-sends the RustDedicated `status` command through WebRCON.
+- sends the RustDedicated `status` command through WebRCON.
 
 ```bash
 rustcmd server status
 ```
 
-checks the state of the local operating-system service.
+- checks the state of the local operating-system service.
 
 ### systemd
 
