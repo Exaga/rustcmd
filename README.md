@@ -10,8 +10,6 @@ Not to be confused with the Rust programming language, `rustcmd` is for owners a
 
 This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd` that never saw a public release. The original tool used the legacy Valve Source Engine RCON protocol. `rustcmd` uses Facepunch's WebRCON protocol over standard WebSockets (RFC 6455). Because, according to Facepunch, ["Websocket RCON is the future."](https://rust.facepunch.com/news/devblog-99)
 
-The `rustcmd` was created because 
-
 - `rustcmd` was designed to be Linux-agnostic and operate on any Linux distribution capable of hosting a Rust server. 
 
 - `rustcmd` is released under the [MIT License](LICENSE).
