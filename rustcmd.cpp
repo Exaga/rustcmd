@@ -1,7 +1,7 @@
 /*
  * rustcmd
  *
- * rustcmd C++ WebRCON tool for (RustDedicated) WebSocket interface
+ * WebRCON tool for RustDedicated WebSocket interface
  *
  * Standalone C++17 WebRCON tool with no third-party dependencies.
  * Runtime configuration is read from rustcmd-cpp.conf.
