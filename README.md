@@ -14,6 +14,11 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 
 - `rustcmd` is released under the [MIT License](LICENSE).
 
+## Why does `rustcmd` exist?
+
+`rustcmd` was created after existing solutions were found to be unsuitable or lacking in functionality. C++ was chosen as a fast and practical solution without scripting runtimes or heavy external dependencies. After proving itself to be an impressive and effective standalone tool for managing a Rust server, additional command-line features were added and `rustcmd` was made publicly available for other server owners and administrators who might find it useful.
+
+
 ## What does `rustcmd` do?
 
 `rustcmd` runs from the command-line and sends RustDedicated console commands to the server through its WebRCON WebSocket interface and prints the returned response. It's a standalone C++17 program using the C++ standard library and POSIX sockets, and purposely avoids heavy, external third-party network libraries. `rustcmd` is self-contained and self-sufficient. It's very quick in operation, offering instant command execution and immediate output. 
@@ -30,7 +35,7 @@ This is technically `rustcmd` [MkII], the C++ successor to the original `rustcmd
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Verbose error ouput](#verbose-error-output)
+- [Verbose error output](#verbose-error-output)
 - [Local service management](#local-service-management)
 - [Command reference](#command-reference)
 
@@ -114,13 +119,13 @@ RUST_RCON_PASSWORD=your-RCON-password
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
 ```
 
-If `~/.local/bin` is already in your `PATH`, the `rustcmd` installation can now be checked with:
+If `~/.local/bin` is already in your `$PATH`, the `rustcmd` installation can now be checked with:
 
 ```bash
 rustcmd --version
 ```
 
-If your shell cannot find `rustcmd`, check your current `PATH`:
+If your shell cannot find `rustcmd`, check your current `$PATH`:
 
 ```bash
 echo "$PATH"
@@ -164,7 +169,7 @@ Edit the configuration file:
 sudo nano /etc/rustcmd/rustcmd-cpp.conf
 ```
 
-Set the RCON connection details and the path to your Rust server service unit:
+Set the RCON connection details and the PATH to your Rust server service unit:
 
 ```ini
 RUST_RCON_IP=127.0.0.1
@@ -299,7 +304,7 @@ rustcmd server status
 
 ### systemd
 
-For a systemd installation, configure the full service unit path:
+For a systemd installation, configure the full service unit PATH:
 
 ```ini
 RUST_SERVICE_UNIT=/etc/systemd/system/rustserver.service
@@ -311,7 +316,7 @@ systemd service operations are executed through `sudo`. The user running `rustcm
 
 ### BSD-style and SysV init scripts
 
-For a rc-style installation, configure the full service-script path:
+For a rc-style installation, configure the full service-script PATH:
 
 ```ini
 RUST_SERVICE_UNIT=/etc/rc.d/rc.rustserver
@@ -321,7 +326,7 @@ RUST_SERVICE_UNIT=/etc/rc.d/rc.rustserver
 
 It does not use `sudo`, change permissions, or attempt to obtain privileges for an `/etc/rc.d/` script. Service-script permissions remain the responsibility of the system administrator (i.e. *YOU*).
 
-NB: A configured service path that is neither recognised as a systemd unit path nor an `/etc/rc.d/` script is rejected rather than guessed.
+NB: A configured service PATH that is neither recognised as a systemd unit PATH nor an `/etc/rc.d/` script is rejected rather than guessed.
 
 ## Command reference
 
