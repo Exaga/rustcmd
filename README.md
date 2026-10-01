@@ -20,7 +20,7 @@ WebRCON command-line tool for the RustDedicated WebSocket interface.
 
 ### TL;DR version
 
-From this repository, users download, compile, install and configure 
+From this repository, users download, compile, install, and configure 
 `rustcmd` to run on their local or remotely hosted RustDedicated 
 server(s). Easy-to-follow [README](README.md) documentation included.
 
