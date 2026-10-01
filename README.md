@@ -1,5 +1,19 @@
 # rustcmd
 
+## Contents
+
+-   [What is rustcmd](#what-is-rustcmd)
+-   [Download the source](#download-the-source)
+-   [Build rustcmd](#build-rustcmd)
+-   [Installation](#installation)
+-   [Configuration](#configuration)
+-   [Usage](#usage)
+-   [Verbose error output](#verbose-error-output)
+-   [Local service management](#local-service-management)
+-   [Command reference](#command-reference)
+
+###################### 
+
 ## What is `rustcmd`?
 
 `rustcmd` is a C++ WebRCON command-line tool for the RustDedicated
@@ -56,21 +70,6 @@ execution and immediate output.
     server service.
 -   `rustcmd` can also be used for automating Rust server commands and
     tasks via `cron`.
-
-###################### 
-
-## Contents
-
--   [Download the source](#download-the-source)
--   [Build rustcmd](#build-rustcmd)
--   [Installation](#installation)
--   [Configuration](#configuration)
--   [Usage](#usage)
--   [Verbose error output](#verbose-error-output)
--   [Local service management](#local-service-management)
--   [Command reference](#command-reference)
-
-###################### 
 
 ## Download the source
 
