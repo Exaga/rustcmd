@@ -121,7 +121,7 @@ running Rust server with an active WebRCON interface, in order to work.
 Choose either a [user installation](#user-installation) or a
 [system-wide installation](#system-wide-installation).
 
-- If you are not sure which option is best for you, the
+- If you're not sure which option is best for you, the
 [user installation](#user-installation) is advised.
 
 ### User installation
