@@ -35,11 +35,11 @@ future."](https://rust.facepunch.com/news/devblog-99)
 `rustcmd` was created after existing solutions were found to be unsuitable, 
 relied on external dependencies, or lacked overall functionality. Something 
 exceptionally fast, lightweight, and entirely command-line driven was needed. 
-C++ was chosen as a high-performance native solution without any scripting 
-runtimes or external dependencies. After proving itself to be an impressive 
-and effective standalone tool for managing a Rust server, additional features 
-were added and `rustcmd` was made publicly available for other server owners 
-and admins who might find it useful.
+C++ was chosen as a high-performance native solution without any additional 
+scripting runtimes or heavy external dependencies. After proving itself to be 
+an impressive and effective standalone tool for managing a Rust server, 
+additional features were added and `rustcmd` was made publicly available for 
+other server owners and admins who might find it useful.
 
 ## What does `rustcmd` do?
 
@@ -519,4 +519,4 @@ rustcmd --license
 
 Copyright © 2026 Exaga - penthux.net
 
-#EOF\<\*\>
+\#EOF\<\*\>
